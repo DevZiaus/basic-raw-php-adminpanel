@@ -45,15 +45,15 @@
                                   <td><?= $data['role_name']; ?></td>
                                   <td>
                                     <?php if($data['user_prpic'] != '') { ?>
-                                      <img src="uploads/<?= $data['user_prpic']; ?>" alt="Prpfile Picture" height="40">
+                                      <img src="uploads/<?= $data['user_prpic']; ?>" alt="Profile Picture" height="40">
                                     <?php }else{ ?>
-                                      <img src="img/avatar.jpg" alt="Prpfile Picture" height="40">
+                                      <img src="img/avatar.png" alt="Profile Picture" height="40">
                                     <?php } ?>
                                   </td>
                                   <td>
                                     <a href="view-user.php?v=<?= $data['user_id']; ?>"><i class="far fa-eye"></i></a>
-                                    <a href="#"><i class="fas fa-pen-square fa-lg"></i></a>
-                                    <a href="#"><i class="fas fa-trash fa-lg"></i></a>
+                                    <a href="edit-user.php?e=<?= $data['user_id']; ?>"><i class="far fa-edit"></i></a>
+                                    <a href="delete-user.php?d=<?= $data['user_id']; ?>"><i class="far fa-trash-alt"></i></a>
                                   </td>
                                 </tr>
                                 <?php } ?>

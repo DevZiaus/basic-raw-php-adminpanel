@@ -5,7 +5,7 @@
 
   $id = $_GET['v'];
 
-  $sel = "SELECT * FROM rw_users WHERE user_id = '$id'";
+  $sel = "SELECT * FROM rw_users NATURAL JOIN user_role WHERE user_id = '$id'";
   $q = mysqli_query($conn, $sel);
   $data = mysqli_fetch_assoc($q);
 ?>
@@ -39,6 +39,24 @@
                                     <td class="text-end">Username</td>
                                     <td>:</td>
                                     <td class="text-start"><?= $data['user_username']; ?></td>
+                                  </tr>
+
+                                  <tr>
+                                    <td class="text-end">Role</td>
+                                    <td>:</td>
+                                    <td class="text-start"><?= $data['role_name']; ?></td>
+                                  </tr>
+
+                                  <tr>
+                                    <td class="text-end">Profile Picture</td>
+                                    <td>:</td>
+                                    <td class="text-start">
+                                      <?php if($data['user_prpic'] != '') { ?>
+                                        <img src="uploads/<?= $data['user_prpic']; ?>" alt="Profile Picture" height="75">
+                                      <?php }else{ ?>
+                                        <img src="img/avatar.png" alt="Profile Picture" height="75">
+                                      <?php } ?>
+                                    </td>
                                   </tr>
                                 
                               </tbody>
