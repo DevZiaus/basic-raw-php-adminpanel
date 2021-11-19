@@ -29,6 +29,9 @@
             <li><a class="dropdown-item" href="logout.php">Logout</a></li>
           </ul>
         </div>
+        <li class="nav-item">
+          <a class="nav-link" href="logout.php"><i class="fas fa-power-off fa-2x"></i></a>
+        </li>
 
       </div>
     </header>
