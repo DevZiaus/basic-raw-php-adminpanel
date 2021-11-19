@@ -1,5 +1,6 @@
 <?php
   require_once('./functions/function.php');
+  needLogged();
   get_header();
   get_sidebar();
 
@@ -15,7 +16,9 @@
                 <div class="card text-center">
                     <div class="card-header d-flex justify-content-between">
                         <h5 class="card-title"><i class="fab fa-gg-circle"></i> VIEW USER INFO</h5>
-                        <a href="all-users.php" class="btn btn-dark btn-sm"><i class="fas fa-th"></i> ALL USERS</a>
+                        <?php if($_SESSION['role']=='1' || $_SESSION['role']=='2') { ?>
+                          <a href="all-users.php" class="btn btn-dark btn-sm"><i class="fas fa-th"></i> ALL USERS</a>
+                        <?php } ?>
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered table-striped">
@@ -63,7 +66,9 @@
                           </table>
                     </div>
                     <div class="card-footer text-center py-4">
-                      <button type="submit" class="btn btn-sm btn-primary">Edit</button>
+                      <?php if($_SESSION['role']=='1'){ ?>
+                        <button type="submit" class="btn btn-sm btn-primary">Edit</button>
+                      <?php } ?>  
                     </div>
                   </div>
               </form>

@@ -12,4 +12,15 @@
     function get_sidebar(){
         require_once('includes/sidebar.php');
     }
+
+    function get_logID(){
+        return !empty($_SESSION['id']) ? true : false;
+    }
+
+    function needLogged(){
+        $check = get_logID();
+        if(!$check) {
+            header('Location: login.php');
+        }
+    }
 ?>

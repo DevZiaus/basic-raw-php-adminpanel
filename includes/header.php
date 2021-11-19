@@ -16,13 +16,17 @@
       <div class="container d-flex justify-content-end">
         <div class="btn-group">
           <button type="button" class="btn my-btn rounded-circle dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <img class="rounded-circle" src="./img/avatar.jpg" alt="Profile Pic">
+            <?php if($_SESSION['image'] != '') { ?>
+              <img src="./uploads/<?= $_SESSION['image']; ?>" class="rounded-circle" alt="Profile Picture" height="40">
+            <?php }else{ ?>
+              <img src="./img/avatar.png"  class="rounded-circle" alt="Profile Picture" height="40">
+            <?php } ?>
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Dashboard</a></li>
-            <li><a class="dropdown-item" href="#">View Profile</a></li>
-            <li><a class="dropdown-item" href="#">Edit Profile</a></li>
-            <li><a class="dropdown-item" href="#">Logout</a></li>
+            <li><a class="dropdown-item" href="index.php">Dashboard</a></li>
+            <li><a class="dropdown-item" href="view-user.php?v=<?= $_SESSION['id']; ?>">View Profile</a></li>
+            <li><a class="dropdown-item" href="edit-user.php?e=<?= $_SESSION['id']; ?>">Edit Profile</a></li>
+            <li><a class="dropdown-item" href="logout.php">Logout</a></li>
           </ul>
         </div>
 

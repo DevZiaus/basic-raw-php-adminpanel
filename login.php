@@ -37,9 +37,16 @@
                                 if(!empty($password)){
                                     $vrfy = "SELECT * FROM rw_users WHERE user_username='$username' AND user_passw='$password'";
                                     $qry = mysqli_query($conn, $vrfy);
-                                    $usr = mysqli_fetch_assoc(qry);
+                                    $usr = mysqli_fetch_assoc($qry);
 
                                     if($usr){
+                                        $_SESSION['id'] = $usr['user_id'];
+                                        $_SESSION['name'] = $usr['user_name'];
+                                        $_SESSION['username'] = $usr['user_username'];
+                                        $_SESSION['email'] = $usr['user_email'];
+                                        $_SESSION['phone'] = $usr['user_phone'];
+                                        $_SESSION['image'] = $usr['user_prpic'];
+                                        $_SESSION['role'] = $usr['role_id'];
                                         header('Location: index.php');
                                     }else {
                                         echo "Username or Password Didn't Match";

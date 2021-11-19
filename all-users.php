@@ -1,5 +1,7 @@
 <?php
   require_once('functions/function.php');
+  needLogged();
+  if($_SESSION['role']=='1' || $_SESSION['role']=='2') {
   get_header();
   get_sidebar();
 ?>
@@ -9,7 +11,9 @@
                 <div class="card text-center">
                     <div class="card-header d-flex justify-content-between">
                         <h5 class="card-title"><i class="fas fa-users"></i> ALL USERS</h5>
-                        <a href="add-user.php" class="btn btn-dark btn-sm"><i class="fas fa-th"></i> ADD USER</a>
+                        <?php if($_SESSION['role']=='1'){ ?>
+                          <a href="add-user.php" class="btn btn-dark btn-sm"><i class="fas fa-th"></i> ADD USER</a>
+                        <?php } ?>
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered table-striped">
@@ -48,8 +52,10 @@
                                   </td>
                                   <td>
                                     <a href="view-user.php?v=<?= $data['user_id']; ?>"><i class="far fa-eye"></i></a>
-                                    <a href="edit-user.php?e=<?= $data['user_id']; ?>"><i class="far fa-edit"></i></a>
-                                    <a href="delete-user.php?d=<?= $data['user_id']; ?>"><i class="far fa-trash-alt"></i></a>
+                                    <?php if($_SESSION['role']=='1'){ ?>
+                                      <a href="edit-user.php?e=<?= $data['user_id']; ?>"><i class="far fa-edit"></i></a>
+                                      <a href="delete-user.php?d=<?= $data['user_id']; ?>"><i class="far fa-trash-alt"></i></a>
+                                    <?php } ?>
                                   </td>
                                 </tr>
                                 <?php } ?>
@@ -67,4 +73,7 @@
     </main>
 <?php
   get_footer();
+  }else {
+    echo "Access Denied!";
+  }
 ?>
