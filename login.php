@@ -1,3 +1,6 @@
+<?php
+    require_once('functions/function.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,16 +28,40 @@
                     <h5 class="card-title">Sign In to Continue</h5>
                 </div>
                 <div class="card-body">
-                    <form action="#" method="post">
-                        <div class="form-floating mb-3"> <!-- Email Input -->
-                            <input type="email" name="log-email" class="form-control d-flex align-items-center" id="log-email" placeholder="name@example.com" required autofocus>
-                            <label for="log-email">Email</label>
+                    <?php
+                        if(!empty($_POST)){
+                            $username = $_POST['username'];
+                            $password = md5($_POST['password']);
+
+                            if(!empty($username)){
+                                if(!empty($password)){
+                                    $vrfy = "SELECT * FROM rw_users WHERE user_username='$username' AND user_passw='$password'";
+                                    $qry = mysqli_query($conn, $vrfy);
+                                    $usr = mysqli_fetch_assoc(qry);
+
+                                    if($usr){
+                                        header('Location: index.php');
+                                    }else {
+                                        echo "Username or Password Didn't Match";
+                                    }
+                                }else{
+                                    echo "Please enter your password!";
+                                }    
+                            }else {
+                                echo "Please enter your username!";
+                            }
+                        }
+                    ?>
+                    <form method="post" action="">
+                        <div class="form-floating mb-3"> <!-- Username Input -->
+                            <input type="text" name="username" class="form-control d-flex align-items-center" id="username" placeholder="Username" autofocus>
+                            <label for="username">Username</label>
                         </div>
                         <div class="form-floating"> <!-- Password Input -->
-                            <input type="password" name="log-pass" class="form-control d-flex align-items-center" id="log-pass" placeholder="Password" required>
-                            <label for="log-pass">Password</label>
+                            <input type="password" name="password" class="form-control d-flex align-items-center" id="password" placeholder="Password">
+                            <label for="password">Password</label>
                         </div>
-                        <button type="submit" class="btn btn-lg btn-primary w-100 mt-3">Submit</button>
+                        <button type="submit" class="btn btn-lg btn-primary w-100 mt-3">Sign In</button>
                         <div class="login-extras d-flex justify-content-between mt-2">
                             <div class="logged-in">
                                 <input type="checkbox" id="check-rem" value="remember-me">
@@ -54,7 +81,7 @@
           &copy; Copyright 
           <script type="text/JavaScript">document.write(new Date().getFullYear());
           </script>
-          <a class="devziaus" href="https://www.devziaus.ga">DevZiaus</a> | All rights reserved.
+          <a class="devziaus" href="https://www.devziaus.ga" target="_blank">DevZiaus</a> | All rights reserved.
         </p>
       </footer>
     <script src="./js/vendor/jquery-3.6.0.min.js"></script>

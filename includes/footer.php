@@ -3,7 +3,7 @@
         &copy; Copyright 
         <script type="text/JavaScript">document.write(new Date().getFullYear());
         </script>
-        <a class="devziaus" href="https://www.devziaus.ga">DevZiaus</a> | All rights reserved.
+        <a class="devziaus" href="https://www.devziaus.ga" target="_blank">DevZiaus</a> | All rights reserved.
       </p>
     </footer>
     <script src="js/vendor/jquery-3.6.0.min.js"></script>

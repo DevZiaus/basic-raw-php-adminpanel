@@ -27,17 +27,13 @@
                               </thead>
                               <tbody>
                                 <?php
+                                  $i = 1;
                                   $sel = "SELECT * FROM rw_users NATURAL JOIN user_role ORDER BY user_id DESC";
                                   $q = mysqli_query($conn, $sel);
                                   while($data = mysqli_fetch_assoc($q)){
                                 ?>
                                 <tr>
-                                  <th scope="row">
-                                  <?php 
-                                    $i = 1;
-                                    $i++;
-                                  ?>
-                                  </th>
+                                  <td scope="row"><?= $i++; ?></td>
                                   <td><?= $data['user_name']; ?></td>
                                   <td><?= $data['user_email']; ?></td>
                                   <td><?= $data['user_phone']; ?></td>
